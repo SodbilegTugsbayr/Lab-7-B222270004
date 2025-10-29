@@ -2,36 +2,59 @@
 
 Хийсэн өөрчлөлтүүд
 • JUnit 4 нэгжийн тестүүд нэмсэн:
-CalendarTest, PersonTest, RoomTest, OrganizationTest, MeetingTest
-• Ant build.xml нэмсэн ба дараах target-уудтай:
-clean, compile, compile-tests, test, javadoc
-• README.md шинэчилж, ажиллуулах заавар болон тайланг нэмэв
+• CalendarTest, PersonTest, RoomTest, OrganizationTest, MeetingTest.
+• Ant build.xml нэмсэн — дараах target-уудтай:
+• clean, compile, compile-tests, test, javadoc.
+• README.md шинэчилж, ажиллуулах заавар болон тайланг нэмэв.
+
+⸻
 
 Тестийн хамрах хүрээ ба тоо
-• Нийт тест: 21
-• CalendarTest – 9
-• PersonTest – 2
-• RoomTest – 2
-• OrganizationTest – 4
-• MeetingTest – 4
 
-Илрүүлсэн ба зассан алдаанууд
-• Calendar.checkTimes: 12-р сарыг буруу шалгаж байсан (>=12). Одоо 12-ыг зөвшөөрөхөөр (>12) зассан.
-• Calendar.isBusy болон Calendar.addMeeting: Зөвхөн эхлэл/төгсгөлийн давхцлыг шалгадаг байсан тул “бүслэх” (enclosure) болон хүрэлцэх (touching) давхцлуудыг алгасдаг байсан. Одоо цагийн огтлолцлыг start <= existingEnd && end >= existingStart нөхцлөөр бүрэн шалгадаг.
+Тестийн нэр Шалгалтын тоо
+Нийт тест 21
+CalendarTest 9
+PersonTest 2
+RoomTest 2
+OrganizationTest 4
+MeetingTest 4
+
+⸻
+
+Илрүүлсэн ба зассан алдаанууд 1. Calendar.checkTimes
+• Асуудал: 12-р сарыг буруу шалгаж байсан (>= 12).
+• Шийдэл: Одоо 12-ыг зөвшөөрөхөөр нөхцлийг өөрчилж (> 12 гэж зассан). 2. Цагийн давхцал шалгалтууд (Calendar.isBusy, Calendar.addMeeting)
+• Асуудал: Зөвхөн эхлэл/төгсгөлийн давхцлыг шалгадаг байсан тул “бүслэх” (enclosure) болон хүрэлцэх (touching) давхцлуудыг алгасдаг байсан.
+• Шийдэл: Цагийн огтлолцлыг бүрэн шалгах логик нэмсэн: start <= existingEnd && end >= existingStart.
+
+⸻
 
 Ажиллуулах
-• Нэгжийн тест:
+
+Нэгжийн тест
+
+Тест гүйцэтгэх команд:
 
 ant test
 
-(Тайлан гарна: build/reports)
+Тайлан байрлах зам: build/reports
 
-    •	Javadoc үүсгэх:
+Javadoc үүсгэх
 
 ant javadoc
 
-(Гаралт: build/javadoc)
+Гаралт: build/javadoc
+
+⸻
 
 Санал болгох сайжруулалт
-• Одон, сар, өдрүүдийн хүчинтэй байдлыг бүрэн шалгах (сар бүрийн өдөр, өндрийн жил гэх мэт) — одоогоор “Day does not exist” hack ашигласан.
-• Meeting дээр attendees болон room-ийн null хамгаалалт нэмэх, builder эсвэл validation оруулах.
+• Одон, сар, өдрүүдийн хүчинтэй байдлыг бүрэн шалгах (сар бүрийн өдрүүд, улирлын тусгай нөхцлүүд, өндөр жил гэх мэт). Одоогоор “Day does not exist” гэж энгийн workaround ашиглаж байна — цаашид илүү нарийн валидац хийх шаардлагатай.
+• Meeting дээр:
+• attendees болон room-ийн null хамгаалалт нэмэх.
+• Builder паттерн эсвэл validation-шалгалтуудыг оруулах.
+
+⸻
+
+Тэмдэглэл
+• Дээрх өөрчлөлтүүд нь кодын найдвартай байдал, тестийн бүрэн хамралт болон баримтуудын гарцыг сайжруулахад чиглэж байна.
+• Хэрэв та нэмэлт дэлгэрэнгүй, тестийн лог эсвэл build.xml-д өөрчлөлт оруулахыг хүсвэл хэлнэ үү — би тусалж өгнө.
