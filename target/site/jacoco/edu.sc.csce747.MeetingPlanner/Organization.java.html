@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Organization.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">MeetingPlanner</a> &gt; <a href="index.source.html" class="el_package">edu.sc.csce747.MeetingPlanner</a> &gt; <span class="el_source">Organization.java</span></div><h1>Organization.java</h1><pre class="source lang-java linenums">package edu.sc.csce747.MeetingPlanner;
+
+import java.util.ArrayList;
+
+public class Organization {
+	/** This class is used to initialize and store a list of employees
+	 * and rooms available for meetings. 
+	 * 
+	 *  It gets a bunch of initialization code out of the PlannerInterface.
+	 */
+	
+	private ArrayList&lt;Person&gt; employees;
+	private ArrayList&lt;Room&gt; rooms;
+
+	/**
+	 * Default constructor - sets up some rooms and people.
+	 */
+<span class="fc" id="L18">	public Organization(){</span>
+<span class="fc" id="L19">		employees = new ArrayList&lt;Person&gt;();</span>
+<span class="fc" id="L20">		employees.add(new Person(&quot;Greg Gay&quot;));</span>
+<span class="fc" id="L21">		employees.add(new Person(&quot;Manton Matthews&quot;));</span>
+<span class="fc" id="L22">		employees.add(new Person(&quot;John Rose&quot;));</span>
+<span class="fc" id="L23">		employees.add(new Person(&quot;Ryan Austin&quot;));</span>
+<span class="fc" id="L24">		employees.add(new Person(&quot;Csilla Farkas&quot;));</span>
+		
+<span class="fc" id="L26">		rooms = new ArrayList&lt;Room&gt;();</span>
+<span class="fc" id="L27">		rooms.add(new Room(&quot;2A01&quot;));</span>
+<span class="fc" id="L28">		rooms.add(new Room(&quot;2A02&quot;));</span>
+<span class="fc" id="L29">		rooms.add(new Room(&quot;2A03&quot;));</span>
+<span class="fc" id="L30">		rooms.add(new Room(&quot;2A04&quot;));</span>
+<span class="fc" id="L31">		rooms.add(new Room(&quot;2A05&quot;));</span>
+<span class="fc" id="L32">	}</span>
+	
+	public ArrayList&lt;Person&gt; getEmployees() {
+<span class="fc" id="L35">		return employees;</span>
+	}
+
+	public ArrayList&lt;Room&gt; getRooms() {
+<span class="fc" id="L39">		return rooms;</span>
+	}
+	
+	/**
+	 * Search for and retrieve a room.
+	 * @param ID - ID of the room to retrieve.
+	 * @return Room - The requested Room object.
+	 * @throws Exception - If the room does not exist.
+	 */
+	public Room getRoom(String ID) throws Exception{
+<span class="fc" id="L49">		Room room = null;</span>
+<span class="pc bpc" id="L50" title="1 of 2 branches missed.">		for(Room toCheck : rooms){</span>
+<span class="fc bfc" id="L51" title="All 2 branches covered.">			if(toCheck.getID().equals(ID)){</span>
+<span class="fc" id="L52">				room = toCheck;</span>
+<span class="fc" id="L53">				return room;</span>
+			}
+<span class="fc" id="L55">		}</span>
+		
+<span class="nc" id="L57">		throw new Exception(&quot;Requested room does not exist&quot;);</span>
+	}
+	
+	/**
+	 * Search for and retrieve a person.
+	 * @param name - The name of the person to retrieve.
+	 * @return Person - The requested Person object.
+	 * @throws Exception - If the person does not exist.
+	 */
+	public Person getEmployee(String name) throws Exception{
+<span class="fc" id="L67">		Person employee = null;</span>
+<span class="fc bfc" id="L68" title="All 2 branches covered.">		for(Person toCheck : employees){</span>
+<span class="fc bfc" id="L69" title="All 2 branches covered.">			if(toCheck.getName().equals(name)){</span>
+<span class="fc" id="L70">				employee = toCheck;</span>
+<span class="fc" id="L71">				return employee;</span>
+			}
+<span class="fc" id="L73">		}</span>
+		
+<span class="fc" id="L75">		throw new Exception(&quot;Requested employee does not exist&quot;);</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>
