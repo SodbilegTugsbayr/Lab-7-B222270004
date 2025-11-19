@@ -1,12 +1,16 @@
 -------------------------------------------------------------------------------
-Test set: edu.sc.csce747.MeetingPlanner.RoomTest
+Test set: edu.sc.csce747.MeetingPlanner.PlannerInterfaceTest
 -------------------------------------------------------------------------------
-Tests run: 2, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.024 s <<< FAILURE! -- in edu.sc.csce747.MeetingPlanner.RoomTest
-edu.sc.csce747.MeetingPlanner.RoomTest.testAddMeeting_conflictMessageWrapped -- Time elapsed: 0.001 s <<< ERROR!
-java.lang.NullPointerException: Cannot invoke "String.equals(Object)" because the return value of "edu.sc.csce747.MeetingPlanner.Meeting.getDescription()" is null
-	at edu.sc.csce747.MeetingPlanner.Calendar.addMeeting(Calendar.java:127)
-	at edu.sc.csce747.MeetingPlanner.Room.addMeeting(Room.java:33)
-	at edu.sc.csce747.MeetingPlanner.RoomTest.testAddMeeting_conflictMessageWrapped(RoomTest.java:17)
+Tests run: 6, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.007 s <<< FAILURE! -- in edu.sc.csce747.MeetingPlanner.PlannerInterfaceTest
+edu.sc.csce747.MeetingPlanner.PlannerInterfaceTest.testScheduleVacation_multiMonthBooking -- Time elapsed: 0.004 s <<< ERROR!
+java.lang.NullPointerException: Cannot invoke "edu.sc.csce747.MeetingPlanner.Room.getID()" because "this.room" is null
+	at edu.sc.csce747.MeetingPlanner.Meeting.toString(Meeting.java:103)
+	at edu.sc.csce747.MeetingPlanner.Calendar.printAgenda(Calendar.java:197)
+	at edu.sc.csce747.MeetingPlanner.Person.printAgenda(Person.java:52)
+	at edu.sc.csce747.MeetingPlanner.PlannerService.lambda$0(PlannerService.java:59)
+	at edu.sc.csce747.MeetingPlanner.PlannerService.scheduleVacation(PlannerService.java:77)
+	at edu.sc.csce747.MeetingPlanner.PlannerInterface.scheduleVacation(PlannerInterface.java:231)
+	at edu.sc.csce747.MeetingPlanner.PlannerInterfaceTest.testScheduleVacation_multiMonthBooking(PlannerInterfaceTest.java:85)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)

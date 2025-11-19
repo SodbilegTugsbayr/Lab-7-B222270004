@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="edu.sc.csce747.MeetingPlanner.RoomTest" time="0.024" tests="2" errors="1" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="edu.sc.csce747.MeetingPlanner.PlannerInterfaceTest" time="0.007" tests="6" errors="1" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="17"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
@@ -12,7 +12,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="GB"/>
     <property name="sun.boot.library.path" value="/opt/homebrew/Cellar/openjdk@17/17.0.14/libexec/openjdk.jdk/Contents/Home/lib"/>
-    <property name="sun.java.command" value="/Users/yujin/Documents/4a/QA/Lab-7-B222270004/target/surefire/surefirebooter-20251119160934632_3.jar /Users/yujin/Documents/4a/QA/Lab-7-B222270004/target/surefire 2025-11-19T16-09-34_594-jvmRun1 surefire-20251119160934632_1tmp surefire_0-20251119160934632_2tmp"/>
+    <property name="sun.java.command" value="/Users/yujin/Documents/4a/QA/Lab-7-B222270004/target/surefire/surefirebooter-20251119151310828_3.jar /Users/yujin/Documents/4a/QA/Lab-7-B222270004/target/surefire 2025-11-19T15-13-10_795-jvmRun1 surefire-20251119151310828_1tmp surefire_0-20251119151310828_2tmp"/>
     <property name="http.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="/Users/yujin/Documents/4a/QA/Lab-7-B222270004/target/test-classes:/Users/yujin/Documents/4a/QA/Lab-7-B222270004/target/classes:/Users/yujin/.m2/repository/junit/junit/4.13.2/junit-4.13.2.jar:/Users/yujin/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:"/>
@@ -28,7 +28,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
-    <property name="surefire.real.class.path" value="/Users/yujin/Documents/4a/QA/Lab-7-B222270004/target/surefire/surefirebooter-20251119160934632_3.jar"/>
+    <property name="surefire.real.class.path" value="/Users/yujin/Documents/4a/QA/Lab-7-B222270004/target/surefire/surefirebooter-20251119151310828_3.jar"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="java.runtime.version" value="17.0.14+0"/>
@@ -56,12 +56,102 @@
     <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="java.class.version" value="61.0"/>
   </properties>
-  <testcase name="testPrintAgenda_returnsString" classname="edu.sc.csce747.MeetingPlanner.RoomTest" time="0.002"/>
-  <testcase name="testAddMeeting_conflictMessageWrapped" classname="edu.sc.csce747.MeetingPlanner.RoomTest" time="0.001">
-    <error message="Cannot invoke &quot;String.equals(Object)&quot; because the return value of &quot;edu.sc.csce747.MeetingPlanner.Meeting.getDescription()&quot; is null" type="java.lang.NullPointerException"><![CDATA[java.lang.NullPointerException: Cannot invoke "String.equals(Object)" because the return value of "edu.sc.csce747.MeetingPlanner.Meeting.getDescription()" is null
-	at edu.sc.csce747.MeetingPlanner.Calendar.addMeeting(Calendar.java:127)
-	at edu.sc.csce747.MeetingPlanner.Room.addMeeting(Room.java:33)
-	at edu.sc.csce747.MeetingPlanner.RoomTest.testAddMeeting_conflictMessageWrapped(RoomTest.java:17)
+  <testcase name="testCheckRoomAndEmployeeAvailability_andAgendas" classname="edu.sc.csce747.MeetingPlanner.PlannerInterfaceTest" time="0.001">
+    <system-out><![CDATA[The rooms open at that time are:
+2A01
+2A02
+2A03
+2A04
+2A05
+The people available to attend at that time are:
+Greg Gay
+Manton Matthews
+John Rose
+Ryan Austin
+Csilla Farkas
+Which of the following rooms are you interested in?
+2A01
+2A02
+2A03
+2A04
+2A05
+Agenda for 1:
+
+Which of the following people are you interested in?
+Greg Gay
+Manton Matthews
+John Rose
+Ryan Austin
+Csilla Farkas
+Agenda for 1:
+
+]]></system-out>
+  </testcase>
+  <testcase name="testScheduleVacation_basicFlow" classname="edu.sc.csce747.MeetingPlanner.PlannerInterfaceTest" time="0.0">
+    <system-out><![CDATA[Which person will be taking the vacation:
+Greg Gay
+Manton Matthews
+John Rose
+Ryan Austin
+Csilla Farkas
+]]></system-out>
+  </testcase>
+  <testcase name="testScheduleMeeting_invalidRoom_thenValid" classname="edu.sc.csce747.MeetingPlanner.PlannerInterfaceTest" time="0.001">
+    <system-out><![CDATA[The rooms open at that time are:
+2A01
+2A02
+2A03
+2A04
+2A05
+Requested room does not exist
+The people available to attend at that time are:
+Greg Gay
+Manton Matthews
+John Rose
+Ryan Austin
+Csilla Farkas
+]]></system-out>
+  </testcase>
+  <testcase name="testScheduleMeeting_basicFlow" classname="edu.sc.csce747.MeetingPlanner.PlannerInterfaceTest" time="0.0">
+    <system-out><![CDATA[The rooms open at that time are:
+2A01
+2A02
+2A03
+2A04
+2A05
+The people available to attend at that time are:
+Greg Gay
+Manton Matthews
+John Rose
+Ryan Austin
+Csilla Farkas
+]]></system-out>
+  </testcase>
+  <testcase name="testScheduleMeeting_attendeeNotFound" classname="edu.sc.csce747.MeetingPlanner.PlannerInterfaceTest" time="0.0">
+    <system-out><![CDATA[The rooms open at that time are:
+2A01
+2A02
+2A03
+2A04
+2A05
+The people available to attend at that time are:
+Greg Gay
+Manton Matthews
+John Rose
+Ryan Austin
+Csilla Farkas
+Requested employee does not exist
+]]></system-out>
+  </testcase>
+  <testcase name="testScheduleVacation_multiMonthBooking" classname="edu.sc.csce747.MeetingPlanner.PlannerInterfaceTest" time="0.004">
+    <error message="Cannot invoke &quot;edu.sc.csce747.MeetingPlanner.Room.getID()&quot; because &quot;this.room&quot; is null" type="java.lang.NullPointerException"><![CDATA[java.lang.NullPointerException: Cannot invoke "edu.sc.csce747.MeetingPlanner.Room.getID()" because "this.room" is null
+	at edu.sc.csce747.MeetingPlanner.Meeting.toString(Meeting.java:103)
+	at edu.sc.csce747.MeetingPlanner.Calendar.printAgenda(Calendar.java:197)
+	at edu.sc.csce747.MeetingPlanner.Person.printAgenda(Person.java:52)
+	at edu.sc.csce747.MeetingPlanner.PlannerService.lambda$0(PlannerService.java:59)
+	at edu.sc.csce747.MeetingPlanner.PlannerService.scheduleVacation(PlannerService.java:77)
+	at edu.sc.csce747.MeetingPlanner.PlannerInterface.scheduleVacation(PlannerInterface.java:231)
+	at edu.sc.csce747.MeetingPlanner.PlannerInterfaceTest.testScheduleVacation_multiMonthBooking(PlannerInterfaceTest.java:85)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -91,5 +181,12 @@
 	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:507)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495)
 ]]></error>
+    <system-out><![CDATA[Which person will be taking the vacation:
+Greg Gay
+Manton Matthews
+John Rose
+Ryan Austin
+Csilla Farkas
+]]></system-out>
   </testcase>
 </testsuite>

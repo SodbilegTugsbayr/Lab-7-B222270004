@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PlannerService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">MeetingPlanner</a> &gt; <a href="index.source.html" class="el_package">edu.sc.csce747.MeetingPlanner</a> &gt; <span class="el_source">PlannerService.java</span></div><h1>PlannerService.java</h1><pre class="source lang-java linenums">package edu.sc.csce747.MeetingPlanner;
+
+import java.util.ArrayList;
+import java.util.List;
+
+<span class="fc" id="L6">public class PlannerService {</span>
+
+  /**
+   * Try to apply a meeting to a room and all attendees.
+   * Returns null on success, or an error message if a TimeConflictException
+   * occurred.
+   */
+  public static String applyMeeting(Room where, List&lt;Person&gt; attendees, Meeting meeting) {
+    try {
+<span class="fc" id="L15">      where.addMeeting(meeting);</span>
+<span class="fc bfc" id="L16" title="All 2 branches covered.">      for (Person p : attendees) {</span>
+<span class="fc" id="L17">        p.addMeeting(meeting);</span>
+<span class="fc" id="L18">      }</span>
+<span class="fc" id="L19">      return null;</span>
+<span class="fc" id="L20">    } catch (TimeConflictException e) {</span>
+<span class="fc" id="L21">      return e.getMessage();</span>
+    }
+  }
+
+  /**
+   * Returns the maximum valid day for a given month.
+   */
+  private static int maxDayOfMonth(int month) {
+<span class="fc bfc" id="L29" title="All 3 branches covered.">    switch (month) {</span>
+      case 2:
+<span class="fc" id="L31">        return 29; // Simplified: allow Feb 29</span>
+      case 4:
+      case 6:
+      case 9:
+      case 11:
+<span class="fc" id="L36">        return 30;</span>
+      default:
+<span class="fc" id="L38">        return 31;</span>
+    }
+  }
+
+  /**
+   * Check for vacation conflicts across the requested range and, if none, book
+   * the vacation days.
+   * Returns a list of conflict messages (empty if booking succeeded).
+   */
+  public static List&lt;String&gt; scheduleVacation(Person who, int sMonth, int sDay, int eMonth, int eDay)
+      throws TimeConflictException {
+
+<span class="fc" id="L50">    List&lt;String&gt; conflicts = new ArrayList&lt;&gt;();</span>
+
+    // Helper: process a single month
+<span class="fc" id="L53">    java.util.function.BiConsumer&lt;Integer, int[]&gt; processMonth = (month, daysRange) -&gt; {</span>
+<span class="fc bfc" id="L54" title="All 2 branches covered.">      for (int day = daysRange[0]; day &lt;= daysRange[1]; day++) {</span>
+        try {
+<span class="fc bfc" id="L56" title="All 2 branches covered.">          if (who.isBusy(month, day, 0, 23)) {</span>
+<span class="fc" id="L57">            Meeting existing = who.getMeeting(month, day, 0);</span>
+<span class="fc bfc" id="L58" title="All 2 branches covered.">            if (!&quot;Day does not exist&quot;.equals(existing.getDescription())) {</span>
+<span class="fc" id="L59">              conflicts.add(&quot;Conflict on &quot; + month + &quot;/&quot; + day + &quot;:\n&quot; + who.printAgenda(month, day));</span>
+            }
+          }
+<span class="fc" id="L62">        } catch (TimeConflictException e) {</span>
+          // Propagate as runtime exception to satisfy BiConsumer, or handle it
+<span class="fc" id="L64">          throw new RuntimeException(e);</span>
+<span class="fc" id="L65">        }</span>
+      }
+<span class="fc" id="L67">    };</span>
+
+    // === Check conflicts ===
+<span class="fc bfc" id="L70" title="All 2 branches covered.">    if (sMonth == eMonth) {</span>
+<span class="fc" id="L71">      processMonth.accept(sMonth, new int[] { sDay, eDay });</span>
+    } else {
+      // Start month
+<span class="fc" id="L74">      processMonth.accept(sMonth, new int[] { sDay, maxDayOfMonth(sMonth) });</span>
+      // Intervening months
+<span class="fc bfc" id="L76" title="All 2 branches covered.">      for (int month = sMonth + 1; month &lt; eMonth; month++) {</span>
+<span class="fc" id="L77">        processMonth.accept(month, new int[] { 1, maxDayOfMonth(month) });</span>
+      }
+      // End month
+<span class="fc" id="L80">      processMonth.accept(eMonth, new int[] { 1, eDay });</span>
+    }
+
+<span class="fc bfc" id="L83" title="All 2 branches covered.">    if (!conflicts.isEmpty()) {</span>
+<span class="fc" id="L84">      return conflicts;</span>
+    }
+
+    // === Book vacation ===
+<span class="fc" id="L88">    java.util.function.BiConsumer&lt;Integer, int[]&gt; bookMonth = (month, daysRange) -&gt; {</span>
+<span class="fc bfc" id="L89" title="All 2 branches covered.">      for (int day = daysRange[0]; day &lt;= daysRange[1]; day++) {</span>
+<span class="fc" id="L90">        Meeting vacation = new Meeting(month, day, 0, 23, new ArrayList&lt;&gt;(), new Room(), &quot;vacation&quot;);</span>
+        try {
+<span class="fc" id="L92">          who.addMeeting(vacation);</span>
+<span class="fc" id="L93">        } catch (TimeConflictException e) {</span>
+<span class="fc" id="L94">          conflicts.add(e.getMessage());</span>
+<span class="fc" id="L95">        }</span>
+      }
+<span class="fc" id="L97">    };</span>
+
+<span class="fc bfc" id="L99" title="All 2 branches covered.">    if (sMonth == eMonth) {</span>
+<span class="fc" id="L100">      bookMonth.accept(sMonth, new int[] { sDay, eDay });</span>
+    } else {
+<span class="fc" id="L102">      bookMonth.accept(sMonth, new int[] { sDay, maxDayOfMonth(sMonth) });</span>
+<span class="fc bfc" id="L103" title="All 2 branches covered.">      for (int month = sMonth + 1; month &lt; eMonth; month++) {</span>
+<span class="fc" id="L104">        bookMonth.accept(month, new int[] { 1, maxDayOfMonth(month) });</span>
+      }
+<span class="fc" id="L106">      bookMonth.accept(eMonth, new int[] { 1, eDay });</span>
+    }
+
+<span class="fc" id="L109">    return conflicts; // empty =&gt; success</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

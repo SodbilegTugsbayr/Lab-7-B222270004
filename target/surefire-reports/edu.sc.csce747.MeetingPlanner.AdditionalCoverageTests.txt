@@ -1,12 +1,12 @@
 -------------------------------------------------------------------------------
-Test set: edu.sc.csce747.MeetingPlanner.RoomTest
+Test set: edu.sc.csce747.MeetingPlanner.AdditionalCoverageTests
 -------------------------------------------------------------------------------
-Tests run: 2, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.024 s <<< FAILURE! -- in edu.sc.csce747.MeetingPlanner.RoomTest
-edu.sc.csce747.MeetingPlanner.RoomTest.testAddMeeting_conflictMessageWrapped -- Time elapsed: 0.001 s <<< ERROR!
-java.lang.NullPointerException: Cannot invoke "String.equals(Object)" because the return value of "edu.sc.csce747.MeetingPlanner.Meeting.getDescription()" is null
-	at edu.sc.csce747.MeetingPlanner.Calendar.addMeeting(Calendar.java:127)
-	at edu.sc.csce747.MeetingPlanner.Room.addMeeting(Room.java:33)
-	at edu.sc.csce747.MeetingPlanner.RoomTest.testAddMeeting_conflictMessageWrapped(RoomTest.java:17)
+Tests run: 18, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.011 s <<< FAILURE! -- in edu.sc.csce747.MeetingPlanner.AdditionalCoverageTests
+edu.sc.csce747.MeetingPlanner.AdditionalCoverageTests.testScheduleVacationWithConflictMultipleMonths -- Time elapsed: 0.001 s <<< FAILURE!
+java.lang.AssertionError: Should mention conflict date 4/10
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.assertTrue(Assert.java:42)
+	at edu.sc.csce747.MeetingPlanner.AdditionalCoverageTests.testScheduleVacationWithConflictMultipleMonths(AdditionalCoverageTests.java:68)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -15,6 +15,7 @@ java.lang.NullPointerException: Cannot invoke "String.equals(Object)" because th
 	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
 	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:56)
 	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
 	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
 	at org.junit.runners.BlockJUnit4ClassRunner$1.evaluate(BlockJUnit4ClassRunner.java:100)
 	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:366)

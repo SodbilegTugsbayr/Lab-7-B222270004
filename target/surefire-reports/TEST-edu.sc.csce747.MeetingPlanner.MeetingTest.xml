@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="edu.sc.csce747.MeetingPlanner.RoomTest" time="0.024" tests="2" errors="1" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="edu.sc.csce747.MeetingPlanner.MeetingTest" time="0.001" tests="4" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="17"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
@@ -12,7 +12,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="GB"/>
     <property name="sun.boot.library.path" value="/opt/homebrew/Cellar/openjdk@17/17.0.14/libexec/openjdk.jdk/Contents/Home/lib"/>
-    <property name="sun.java.command" value="/Users/yujin/Documents/4a/QA/Lab-7-B222270004/target/surefire/surefirebooter-20251119160934632_3.jar /Users/yujin/Documents/4a/QA/Lab-7-B222270004/target/surefire 2025-11-19T16-09-34_594-jvmRun1 surefire-20251119160934632_1tmp surefire_0-20251119160934632_2tmp"/>
+    <property name="sun.java.command" value="/Users/yujin/Documents/4a/QA/Lab-7-B222270004/target/surefire/surefirebooter-20251119151310828_3.jar /Users/yujin/Documents/4a/QA/Lab-7-B222270004/target/surefire 2025-11-19T15-13-10_795-jvmRun1 surefire-20251119151310828_1tmp surefire_0-20251119151310828_2tmp"/>
     <property name="http.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="/Users/yujin/Documents/4a/QA/Lab-7-B222270004/target/test-classes:/Users/yujin/Documents/4a/QA/Lab-7-B222270004/target/classes:/Users/yujin/.m2/repository/junit/junit/4.13.2/junit-4.13.2.jar:/Users/yujin/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:"/>
@@ -28,7 +28,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
-    <property name="surefire.real.class.path" value="/Users/yujin/Documents/4a/QA/Lab-7-B222270004/target/surefire/surefirebooter-20251119160934632_3.jar"/>
+    <property name="surefire.real.class.path" value="/Users/yujin/Documents/4a/QA/Lab-7-B222270004/target/surefire/surefirebooter-20251119151310828_3.jar"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="java.runtime.version" value="17.0.14+0"/>
@@ -56,40 +56,8 @@
     <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="java.class.version" value="61.0"/>
   </properties>
-  <testcase name="testPrintAgenda_returnsString" classname="edu.sc.csce747.MeetingPlanner.RoomTest" time="0.002"/>
-  <testcase name="testAddMeeting_conflictMessageWrapped" classname="edu.sc.csce747.MeetingPlanner.RoomTest" time="0.001">
-    <error message="Cannot invoke &quot;String.equals(Object)&quot; because the return value of &quot;edu.sc.csce747.MeetingPlanner.Meeting.getDescription()&quot; is null" type="java.lang.NullPointerException"><![CDATA[java.lang.NullPointerException: Cannot invoke "String.equals(Object)" because the return value of "edu.sc.csce747.MeetingPlanner.Meeting.getDescription()" is null
-	at edu.sc.csce747.MeetingPlanner.Calendar.addMeeting(Calendar.java:127)
-	at edu.sc.csce747.MeetingPlanner.Room.addMeeting(Room.java:33)
-	at edu.sc.csce747.MeetingPlanner.RoomTest.testAddMeeting_conflictMessageWrapped(RoomTest.java:17)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
-	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:59)
-	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
-	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:56)
-	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
-	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
-	at org.junit.runners.BlockJUnit4ClassRunner$1.evaluate(BlockJUnit4ClassRunner.java:100)
-	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:366)
-	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:103)
-	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:63)
-	at org.junit.runners.ParentRunner$4.run(ParentRunner.java:331)
-	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:79)
-	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:329)
-	at org.junit.runners.ParentRunner.access$100(ParentRunner.java:66)
-	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:293)
-	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
-	at org.junit.runners.ParentRunner.run(ParentRunner.java:413)
-	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:316)
-	at org.apache.maven.surefire.junit4.JUnit4Provider.executeWithRerun(JUnit4Provider.java:240)
-	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:214)
-	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:155)
-	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:385)
-	at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:162)
-	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:507)
-	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495)
-]]></error>
-  </testcase>
+  <testcase name="testAddRemoveAttendee" classname="edu.sc.csce747.MeetingPlanner.MeetingTest" time="0.0"/>
+  <testcase name="testToString_includesKeyDetails" classname="edu.sc.csce747.MeetingPlanner.MeetingTest" time="0.0"/>
+  <testcase name="testDayConstructor_allDayMeeting" classname="edu.sc.csce747.MeetingPlanner.MeetingTest" time="0.0"/>
+  <testcase name="testDetailedConstructor_andGetters" classname="edu.sc.csce747.MeetingPlanner.MeetingTest" time="0.0"/>
 </testsuite>

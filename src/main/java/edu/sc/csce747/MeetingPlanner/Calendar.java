@@ -99,7 +99,7 @@ public class Calendar {
 			throw new TimeConflictException("Illegal hour.");
 		}
 
-		if (mStart >= mEnd) {
+		if (mStart > mEnd) {
 			throw new TimeConflictException("Meeting starts before it ends.");
 		}
 	}
